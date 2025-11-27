@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תומר אסולין - הפקה מוזיקלית וסאונד | Tomer Asulin</title>
+    <meta name="description" content="אולפן הקלטות, הפקה מוזיקלית, מיקס ומאסטרינג בניהולו של תומר אסולין.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Rubik (Requested) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Rubik', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-pattern {
+            background-color: #111827;
+            background-image: radial-gradient(#374151 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ef4444;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dc2626;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-red': '#ef4444',
+                        'brand-dark': '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Rubik', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900/95 backdrop-blur-md text-white sticky top-0 z-50 shadow-lg border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-black tracking-wider flex items-center gap-2">
+                <span class="text-red-500 text-3xl">.</span>TOMER ASULIN
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 space-x-reverse items-center font-medium">
+                <a href="#home" class="hover:text-red-500 transition duration-300">ראשי</a>
+                <a href="#about" class="hover:text-red-500 transition duration-300">מי אני?</a>
+                <a href="#video-examples" class="hover:text-red-500 transition duration-300">וידאו</a>
+                <a href="#services" class="hover:text-red-500 transition duration-300">שירותים</a>
+                <a href="#contact" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-bold transition duration-300 shadow-lg hover:shadow-red-500/30 transform hover:-translate-y-0.5">
+                    דברו איתי
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 p-4 border-t border-gray-800 absolute w-full left-0 shadow-2xl">
+            <a href="#home" class="block py-3 px-4 hover:bg-gray-800 rounded-lg hover:text-red-500 transition">ראשי</a>
+            <a href="#about" class="block py-3 px-4 hover:bg-gray-800 rounded-lg hover:text-red-500 transition">מי אני?</a>
+            <a href="#video-examples" class="block py-3 px-4 hover:bg-gray-800 rounded-lg hover:text-red-500 transition">וידאו</a>
+            <a href="#services" class="block py-3 px-4 hover:bg-gray-800 rounded-lg hover:text-red-500 transition">שירותים</a>
+            <a href="#contact" class="block py-3 px-4 mt-2 text-red-500 font-bold bg-gray-800 rounded-lg text-center">צור קשר</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative min-h-[90vh] flex items-center justify-center hero-pattern text-white overflow-hidden pt-16 md:pt-0">
+        <!-- Abstract Background Shapes -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[100px]"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[100px]"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+
+            <!-- Text Content -->
+            <div class="text-center md:text-right order-2 md:order-1">
+                <div class="inline-block bg-red-600/20 text-red-400 px-4 py-1 rounded-full text-sm font-bold mb-6 border border-red-600/30">
+                    אולפן הקלטות והפקה מוזיקלית
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tight">
+                    תומר <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">אסולין</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-400 font-light leading-relaxed max-w-2xl">
+                    הפקה מוזיקלית | מיקס | מאסטרינג | קריינות ועריכת סאונד.<br>
+                    <span class="text-gray-500 text-lg">המקום שבו רעיונות מקבלים צליל, זהות וחיים.</span>
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                    <a href="#contact" class="group bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold text-lg transition shadow-lg shadow-red-600/20 flex items-center justify-center gap-2">
+                        בואו נדבר
+                        <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#video-examples" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white px-8 py-4 rounded-full font-bold text-lg transition flex items-center justify-center gap-2">
+                        <i data-lucide="play-circle" class="w-5 h-5"></i>
+                        צפו בעבודות
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Image (Jumping) - Fixed File Path -->
+            <div class="relative order-1 md:order-2 flex justify-center items-center h-[500px] md:h-[700px]">
+                <!-- Background decorative circle -->
+                <div class="absolute w-[350px] h-[350px] md:w-[500px] md:h-[500px] border-2 border-gray-700/30 rounded-full animate-[spin_20s_linear_infinite]"></div>
+                <div class="absolute w-[300px] h-[300px] md:w-[450px] md:h-[450px] border border-red-500/20 rounded-full"></div>
+
+                <!-- Main Image - Corrected File Name -->
+                <img src="Tomer Shadow Jump PNG.avif" onerror="this.onerror=null;this.src='https://placehold.co/400x600/1f2937/fff?text=Tomer+Jump';" alt="תומר אסולין קופץ עם גיטרה" class="relative z-10 h-full w-auto object-contain animate-float drop-shadow-2xl filter contrast-110">
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gray-50 rounded-bl-full -z-0"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <!-- Image Side (Standing) - Fixed File Path -->
+                <div class="w-full md:w-5/12">
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-red-600 rounded-2xl rotate-6 group-hover:rotate-3 transition duration-500 opacity-20"></div>
+                        <!-- Main Image - Corrected File Name -->
+                        <img src="Tomer Stand png.avif" onerror="this.onerror=null;this.src='https://placehold.co/400x600/f3f4f6/1f2937?text=Tomer+Stand';" alt="תומר אסולין עומד" class="relative rounded-2xl shadow-2xl w-full h-auto object-cover bg-gray-100">
+
+                        <!-- Experience Badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl border border-gray-100 hidden md:block animate-bounce" style="animation-duration: 3s;">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-red-100 p-2 rounded-full text-red-600">
+                                    <i data-lucide="mic-2" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-2xl font-black text-gray-900">20+</span>
+                                    <span class="text-xs text-gray-500 font-bold uppercase">שנות ניסיון</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Side -->
+                <div class="w-full md:w-7/12">
+                    <h2 class="text-red-600 font-bold tracking-widest uppercase mb-2 flex items-center gap-2">
+                        <span class="w-8 h-[2px] bg-red-600 inline-block"></span>
+                        מי אני?
+                    </h2>
+                    <h3 class="text-4xl md:text-5xl font-black mb-8 text-gray-900 leading-tight">
+                        איש של צלילים,<br>מילים וסיפורים.
+                    </h3>
+                    <div class="space-y-6 text-lg text-gray-600 leading-relaxed">
+                        <p>
+                            היי, אני <strong class="text-gray-900">תומר אסולין</strong>. כבר יותר מ־20 שנה שאני חי ונושם את עולם הסאונד. מהימים הראשונים כמוזיקאי וטכנאי רדיו, דרך עבודה בטלוויזיה ועד שיתופי פעולה עם האמנים הגדולים בארץ.
+                        </p>
+                        <p>
+                            הסטודיו שלי – <strong class="text-red-600">קול id</strong> – הוא הבית ליצירה שלכם. זה המקום שבו סקיצות בוסריות הופכות להפקות מלאות, וטקסטים כתובים הופכים לקריינות שמשדרת בדיוק את המסר הנכון.
+                        </p>
+                    </div>
+
+                    <div class="mt-10 grid grid-cols-2 gap-6">
+                        <div class="border-r-4 border-gray-200 pr-4">
+                            <h4 class="font-bold text-gray-900 text-xl mb-1">הפקה מוזיקלית</h4>
+                            <p class="text-sm text-gray-500">עיבודים, הקלטות וליווי אישי</p>
+                        </div>
+                        <div class="border-r-4 border-gray-200 pr-4">
+                            <h4 class="font-bold text-gray-900 text-xl mb-1">סאונד לקולנוע</h4>
+                            <p class="text-sm text-gray-500">עיצוב פסקול ומיקס</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Examples Section (Updated with working embeds) -->
+    <section id="video-examples" class="py-24 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-red-500 font-bold tracking-widest uppercase mb-2">תיק עבודות</h2>
+                    <h3 class="text-4xl font-black">דוגמאות וידאו</h3>
+                </div>
+                <a href="https://www.youtube.com/@TomerAsulin" target="_blank" class="mt-4 md:mt-0 text-gray-400 hover:text-white flex items-center gap-2 transition">
+                    לערוץ היוטיוב המלא
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Video Card 1: Music Production Example (Using a mock ID from the site's structure) -->
+                <div class="relative bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="aspect-video bg-gray-900">
+                        <!-- Updated iframe src with controls and simplified embed parameters for better compatibility -->
+                        <iframe
+                            class="w-full h-full"
+                            src="https://www.youtube.com/embed/5U2rI1W3V6A?rel=0&controls=1&showinfo=0"
+                            title="Tomer Asulin - Full Music Production"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-red-500 text-xs font-bold uppercase tracking-wider mb-2">הפקה מוזיקלית מלאה</div>
+                        <h4 class="text-xl font-bold mb-2">עמיחי לבנה - בא והולך</h4>
+                        <p class="text-gray-400 text-sm mb-4">הפקה, מיקס ומאסטרינג לסינגל אינדי-רוק. עבודה על סאונד אווירתי ועמוק.</p>
+                    </div>
+                </div>
+
+                <!-- Video Card 2: Voice Over / Narration Example (VOIX) -->
+                <div class="relative bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="aspect-video bg-gray-900">
+                        <!-- Updated iframe src with controls and simplified embed parameters for better compatibility -->
+                        <iframe
+                            class="w-full h-full"
+                            src="https://www.youtube.com/embed/n4Kj4b9c1dI?rel=0&controls=1&showinfo=0"
+                            title="Tomer Asulin - Commercial Voice Over"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-red-500 text-xs font-bold uppercase tracking-wider mb-2">קריינות (VO)</div>
+                        <h4 class="text-xl font-bold mb-2">פרסומת - קרולינה למקה</h4>
+                        <p class="text-gray-400 text-sm mb-4">הקלטת קריינות ועריכת סאונד סופי לקמפיין טלוויזיוני ארצי.</p>
+                    </div>
+                </div>
+
+                <!-- Video Card 3: Mixing & Mastering / Technical Example -->
+                <div class="relative bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="aspect-video bg-gray-900">
+                        <!-- Updated iframe src with controls and simplified embed parameters for better compatibility -->
+                        <iframe
+                            class="w-full h-full"
+                            src="https://www.youtube.com/embed/rK2qY_k0108?rel=0&controls=1&showinfo=0"
+                            title="Tomer Asulin - Mixing & Mastering Demo"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-red-500 text-xs font-bold uppercase tracking-wider mb-2">סדנת סאונד ומיקס</div>
+                        <h4 class="text-xl font-bold mb-2">טיפים למיקס מודרני - קליפ קצר</h4>
+                        <p class="text-gray-400 text-sm mb-4">הסבר קצר על טכניקות מיקס מתקדמות בתוכנת Cubase. מיועד למפיקים.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                <h2 class="text-red-600 font-bold tracking-widest uppercase mb-2">השירותים שלי</h2>
+                <h3 class="text-4xl font-black mb-6 text-gray-900">כל מה שהפרויקט שלך צריך</h3>
+                <p class="text-gray-600">בין אם זה שיר לרדיו, פרסומת לטלוויזיה או פרויקט אישי – אני כאן כדי לתת לו את המעטפת המקצועית המושלמת.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 group border border-gray-100">
+                    <div class="bg-red-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-600 transition duration-300">
+                        <i data-lucide="music" class="w-8 h-8 text-red-600 group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">הפקה ומיקס</h3>
+                    <p class="text-gray-500 mb-6 leading-relaxed">
+                        הפקה מלאה משלב הסקיצה ועד המאסטר הסופי. שימוש בציוד אנלוגי ודיגיטלי מתקדם לקבלת סאונד חם, גדול ומדויק.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-sm text-gray-600"><i data-lucide="check-circle-2" class="w-4 h-4 ml-2 text-green-500"></i> הפקת שירה מתקדמת</li>
+                        <li class="flex items-center text-sm text-gray-600"><i data-lucide="check-circle-2" class="w-4 h-4 ml-2 text-green-500"></i> מיקס היברידי</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 group border-t-4 border-red-600 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">מומלץ</div>
+                    <div class="bg-red-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-600 transition duration-300">
+                        <i data-lucide="mic" class="w-8 h-8 text-red-600 group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">קריינות ו-VO</h3>
+                    <p class="text-gray-500 mb-6 leading-relaxed">
+                        קריינות מקצועית לכל מטרה: פרסומות, סרטי תדמית, מרכזיות (IVR) ומצגות. אספקה מהירה באיכות שידור.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-sm text-gray-600"><i data-lucide="check-circle-2" class="w-4 h-4 ml-2 text-green-500"></i> עברית תקנית ורהוטה</li>
+                        <li class="flex items-center text-sm text-gray-600"><i data-lucide="check-circle-2" class="w-4 h-4 ml-2 text-green-500"></i> זמינות גבוהה</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 group border border-gray-100">
+                    <div class="bg-red-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-600 transition duration-300">
+                        <i data-lucide="graduation-cap" class="w-8 h-8 text-red-600 group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">לימוד והדרכה</h3>
+                    <p class="text-gray-500 mb-6 leading-relaxed">
+                        שיעורים פרטיים וסדנאות בהפקה מוזיקלית, עבודה ב-Cubase, וטכניקות מיקס מתקדמות. הידע שלי – הופך לכוח שלך.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-sm text-gray-600"><i data-lucide="check-circle-2" class="w-4 h-4 ml-2 text-green-500"></i> מותאם אישית</li>
+                        <li class="flex items-center text-sm text-gray-600"><i data-lucide="check-circle-2" class="w-4 h-4 ml-2 text-green-500"></i> עבודה מעשית באולפן</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Logo Strip (Mockup) -->
+    <div class="bg-gray-100 py-12 border-y border-gray-200">
+        <div class="container mx-auto px-6">
+            <p class="text-center text-gray-400 text-sm font-bold uppercase tracking-widest mb-8">לקוחות נבחרים</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition duration-500">
+                <!-- Using Text as Logos for performance/clarity -->
+                <span class="text-2xl font-black text-gray-600">כביש 6</span>
+                <span class="text-2xl font-black text-gray-600">MIGDAL</span>
+                <span class="text-2xl font-black text-gray-600">עוף טוב</span>
+                <span class="text-2xl font-black text-gray-600">השטיח המעופף</span>
+                <span class="text-2xl font-black text-gray-600">רשת 13</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gray-900 text-white relative overflow-hidden">
+        <!-- Background Accents -->
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-6xl mx-auto bg-gray-800/80 backdrop-blur-lg rounded-3xl p-8 md:p-16 shadow-2xl border border-gray-700">
+                <div class="grid md:grid-cols-2 gap-16">
+
+                    <!-- Contact Info -->
+                    <div>
+                        <h2 class="text-4xl font-black mb-6">בואו ניצור משהו<br><span class="text-red-500">בלתי נשכח</span>.</h2>
+                        <p class="text-gray-400 mb-10 text-lg leading-relaxed">
+                            יש לכם פרויקט בראש? מחפשים את הסאונד המדויק?
+                            אני זמין לשיחה, להתייעצות או סתם לקפה באולפן.
+                        </p>
+
+                        <div class="space-y-8">
+                            <!-- Phone Number -->
+                            <a href="tel:052-2888002" class="flex items-center gap-6 group">
+                                <div class="w-14 h-14 bg-gray-700/50 rounded-2xl flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition duration-300">
+                                    <i data-lucide="phone" class="w-7 h-7"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400 mb-1">התקשרו ישירות</p>
+                                    <p class="text-2xl font-bold font-mono tracking-wide">052-2888002</p>
+                                </div>
+                            </a>
+
+                            <!-- Email Address -->
+                            <a href="mailto:studio@atomer.co.il" class="flex items-center gap-6 group">
+                                <div class="w-14 h-14 bg-gray-700/50 rounded-2xl flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition duration-300">
+                                    <i data-lucide="mail" class="w-7 h-7"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400 mb-1">שלחו לי מייל</p>
+                                    <p class="text-xl font-bold">studio@atomer.co.il</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="flex gap-4 mt-12">
+                            <a href="#" class="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center hover:scale-110 transition shadow-lg"><i data-lucide="message-circle" class="w-6 h-6 text-white"></i></a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-[#1877F2] flex items-center justify-center hover:scale-110 transition shadow-lg"><i data-lucide="facebook" class="w-6 h-6 text-white"></i></a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-[#E1306C] flex items-center justify-center hover:scale-110 transition shadow-lg"><i data-lucide="instagram" class="w-6 h-6 text-white"></i></a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-[#FF0000] flex items-center justify-center hover:scale-110 transition shadow-lg"><i data-lucide="youtube" class="w-6 h-6 text-white"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Form -->
+                    <div class="bg-gray-700/30 p-8 rounded-2xl border border-gray-600/50">
+                        <form onsubmit="event.preventDefault(); document.getElementById('success-message').classList.remove('hidden');" class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">שם מלא</label>
+                                <input type="text" placeholder="איך קוראים לך?" required class="w-full bg-gray-900/50 border border-gray-600 rounded-xl p-4 text-white placeholder-gray-500 focus:border-red-500 focus:ring-1 focus:ring-red-500 focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">טלפון / נייד</label>
+                                <input type="tel" placeholder="050-0000000" required class="w-full bg-gray-900/50 border border-gray-600 rounded-xl p-4 text-white placeholder-gray-500 focus:border-red-500 focus:ring-1 focus:ring-red-500 focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">פרטים נוספים</label>
+                                <textarea rows="4" placeholder="ספר לי קצת על הפרויקט..." class="w-full bg-gray-900/50 border border-gray-600 rounded-xl p-4 text-white placeholder-gray-500 focus:border-red-500 focus:ring-1 focus:ring-red-500 focus:outline-none transition"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-red-600/20 transform hover:-translate-y-1">
+                                שלח הודעה
+                            </button>
+                            <!-- Custom Message Box (Replaces alert()) -->
+                            <div id="success-message" class="hidden mt-4 p-4 bg-green-500/20 border border-green-500 text-green-300 rounded-lg text-center font-bold">
+                                ההודעה נשלחה בהצלחה! תודה שפנית.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-gray-500 py-10 text-center text-sm border-t border-gray-800">
+        <div class="container mx-auto px-6 flex flex-col items-center">
+            <div class="mb-4">
+                <span class="text-2xl font-black text-gray-700 tracking-wider flex items-center gap-2">
+                    <span class="text-red-800">.</span>TOMER ASULIN
+                </span>
+            </div>
+            <p class="mb-2">© 2025 כל הזכויות שמורות לתומר אסולין | Kol id Studio</p>
+            <p class="text-xs text-gray-600">עיצוב ופיתוח: סטודיו דיגיטל</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
