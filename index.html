@@ -70,9 +70,86 @@
                 }
             }
         }
+        
+        // --- VIDEO DATA ARRAY ---
+        const videos = [
+            { url: 'https://www.youtube.com/watch?v=3VZFpwlXKpg', category: 'הפקה מוזיקלית מלאה', title: 'עמיחי לבנה - בא והולך', description: 'הפקה, מיקס ומאסטרינג לסינגל אינדי-רוק. עבודה על סאונד אווירתי ועמוק.' },
+            { url: 'https://www.youtube.com/watch?v=n4Kj4b9c1dI', category: 'קריינות (VO)', title: 'פרסומת - קרולינה למקה', description: 'הקלטת קריינות ועריכת סאונד סופי לקמפיין טלוויזיוני ארצי.' },
+            { url: 'https://www.youtube.com/watch?v=rK2qY_k0108', category: 'סדנת סאונד ומיקס', title: 'טיפים למיקס מודרני - קליפ קצר', description: 'הסבר קצר על טכניקות מיקס מתקדמות בתוכנת Cubase. מיועד למפיקים.' }
+        ];
+        // --------------------------
+
+        // Helper function to extract the 11-character YouTube ID from a URL
+        function getYouTubeId(url) {
+            if (!url) return null;
+            
+            let match;
+            // Robust regex covering watch links, embed links, and shortened youtu.be links
+            match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+            
+            if (match && match[1] && match[1].length === 11) {
+                return match[1];
+            }
+            return null; // Return null if no valid ID is found
+        }
+
+        // Helper function to get the YouTube thumbnail URL
+        function getThumbnailUrl(videoUrl) {
+            const videoId = getYouTubeId(videoUrl);
+            if (!videoId) return 'https://placehold.co/600x337/374151/FFFFFF?text=Video+Link+Error'; // Fallback Placeholder
+            
+            // Using maxresdefault.jpg for highest quality thumbnail
+            return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        }
+
+        // Function to dynamically render the video cards, now linking directly to YouTube
+        function renderVideoCards() {
+            const grid = document.getElementById('video-grid');
+            if (!grid) return;
+
+            let htmlContent = '';
+
+            videos.forEach(video => {
+                const thumbnailUrl = getThumbnailUrl(video.url);
+
+                // Now using an <a> tag to link directly to the video URL
+                htmlContent += `
+                    <a href="${video.url}" target="_blank" rel="noopener noreferrer" 
+                       class="relative bg-gray-800 rounded-2xl overflow-hidden shadow-2xl group cursor-pointer hover:scale-[1.02] transition duration-300"> 
+                        <div class="aspect-video bg-gray-900 relative flex items-center justify-center border-b-4 border-red-600/0 group-hover:border-red-600 transition duration-300">
+                            <!-- YOUTUBE THUMBNAIL IMAGE -->
+                            <img 
+                                src="${thumbnailUrl}" 
+                                onerror="this.onerror=null;this.src='https://placehold.co/600x337/374151/FFFFFF?text=Video+Thumbnail';" 
+                                alt="${video.title}" 
+                                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-300"
+                            >
+                            <!-- Play Icon Overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition duration-300">
+                                <i data-lucide="play-circle" class="w-16 h-16 text-red-500/90 group-hover:text-red-400/100 transform group-hover:scale-110 transition duration-300 drop-shadow-lg"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-red-500 text-xs font-bold uppercase tracking-wider mb-2">${video.category}</div>
+                            <h4 class="text-xl font-bold mb-4">${video.title}</h4>
+                            <p class="text-gray-400 text-sm mb-4">${video.description}</p>
+                        </div>
+                    </a>
+                `;
+            });
+
+            grid.innerHTML = htmlContent;
+            lucide.createIcons(); // Re-initialize icons for newly added content
+        }
+
+        // Run the rendering function when the document is ready
+        document.addEventListener('DOMContentLoaded', renderVideoCards);
+
     </script>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- REMOVED: Video Modal HTML structure -->
 
     <!-- Navigation -->
     <nav class="bg-gray-900/95 backdrop-blur-md text-white sticky top-0 z-50 shadow-lg border-b border-gray-800">
@@ -216,7 +293,22 @@
         </div>
     </section>
 
-    <!-- Video Examples Section (Updated with working embeds) -->
+    <!-- Clients Logo Strip (Mockup) -->
+    <div class="bg-gray-100 py-12 border-y border-gray-200">
+        <div class="container mx-auto px-6">
+            <p class="text-center text-gray-400 text-sm font-bold uppercase tracking-widest mb-8">לקוחות נבחרים</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition duration-500">
+                <!-- Using Text as Logos for performance/clarity -->
+                <span class="text-2xl font-black text-gray-600">כביש 6</span>
+                <span class="text-2xl font-black text-gray-600">MIGDAL</span>
+                <span class="text-2xl font-black text-gray-600">עוף טוב</span>
+                <span class="text-2xl font-black text-gray-600">השטיח המעופף</span>
+                <span class="text-2xl font-black text-gray-600">רשת 13</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Examples Section (Now dynamically rendered from JS array) -->
     <section id="video-examples" class="py-24 bg-gray-900 text-white">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16">
@@ -224,75 +316,16 @@
                     <h2 class="text-red-500 font-bold tracking-widest uppercase mb-2">תיק עבודות</h2>
                     <h3 class="text-4xl font-black">דוגמאות וידאו</h3>
                 </div>
-                <a href="https://www.youtube.com/@TomerAsulin" target="_blank" class="mt-4 md:mt-0 text-gray-400 hover:text-white flex items-center gap-2 transition">
+                <!-- Link is still helpful for external access if modal fails -->
+                <a href="https://www.youtube.com/@atomermusic" target="_blank" class="mt-4 md:mt-0 text-gray-400 hover:text-white flex items-center gap-2 transition">
                     לערוץ היוטיוב המלא
                     <i data-lucide="external-link" class="w-4 h-4"></i>
                 </a>
             </div>
 
-            <!-- Video Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- Video Card 1: Music Production Example (Using a mock ID from the site's structure) -->
-                <div class="relative bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
-                    <div class="aspect-video bg-gray-900">
-                        <!-- Updated iframe src with controls and simplified embed parameters for better compatibility -->
-                        <iframe
-                            class="w-full h-full"
-                            src="https://www.youtube.com/embed/5U2rI1W3V6A?rel=0&controls=1&showinfo=0"
-                            title="Tomer Asulin - Full Music Production"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="p-6">
-                        <div class="text-red-500 text-xs font-bold uppercase tracking-wider mb-2">הפקה מוזיקלית מלאה</div>
-                        <h4 class="text-xl font-bold mb-2">עמיחי לבנה - בא והולך</h4>
-                        <p class="text-gray-400 text-sm mb-4">הפקה, מיקס ומאסטרינג לסינגל אינדי-רוק. עבודה על סאונד אווירתי ועמוק.</p>
-                    </div>
-                </div>
-
-                <!-- Video Card 2: Voice Over / Narration Example (VOIX) -->
-                <div class="relative bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
-                    <div class="aspect-video bg-gray-900">
-                        <!-- Updated iframe src with controls and simplified embed parameters for better compatibility -->
-                        <iframe
-                            class="w-full h-full"
-                            src="https://www.youtube.com/embed/n4Kj4b9c1dI?rel=0&controls=1&showinfo=0"
-                            title="Tomer Asulin - Commercial Voice Over"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="p-6">
-                        <div class="text-red-500 text-xs font-bold uppercase tracking-wider mb-2">קריינות (VO)</div>
-                        <h4 class="text-xl font-bold mb-2">פרסומת - קרולינה למקה</h4>
-                        <p class="text-gray-400 text-sm mb-4">הקלטת קריינות ועריכת סאונד סופי לקמפיין טלוויזיוני ארצי.</p>
-                    </div>
-                </div>
-
-                <!-- Video Card 3: Mixing & Mastering / Technical Example -->
-                <div class="relative bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
-                    <div class="aspect-video bg-gray-900">
-                        <!-- Updated iframe src with controls and simplified embed parameters for better compatibility -->
-                        <iframe
-                            class="w-full h-full"
-                            src="https://www.youtube.com/embed/rK2qY_k0108?rel=0&controls=1&showinfo=0"
-                            title="Tomer Asulin - Mixing & Mastering Demo"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="p-6">
-                        <div class="text-red-500 text-xs font-bold uppercase tracking-wider mb-2">סדנת סאונד ומיקס</div>
-                        <h4 class="text-xl font-bold mb-2">טיפים למיקס מודרני - קליפ קצר</h4>
-                        <p class="text-gray-400 text-sm mb-4">הסבר קצר על טכניקות מיקס מתקדמות בתוכנת Cubase. מיועד למפיקים.</p>
-                    </div>
-                </div>
-
+            <!-- Video Grid Container - Content generated by JavaScript -->
+            <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Video cards will be injected here by renderVideoCards() -->
             </div>
         </div>
     </section>
@@ -356,21 +389,6 @@
         </div>
     </section>
 
-    <!-- Clients Logo Strip (Mockup) -->
-    <div class="bg-gray-100 py-12 border-y border-gray-200">
-        <div class="container mx-auto px-6">
-            <p class="text-center text-gray-400 text-sm font-bold uppercase tracking-widest mb-8">לקוחות נבחרים</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition duration-500">
-                <!-- Using Text as Logos for performance/clarity -->
-                <span class="text-2xl font-black text-gray-600">כביש 6</span>
-                <span class="text-2xl font-black text-gray-600">MIGDAL</span>
-                <span class="text-2xl font-black text-gray-600">עוף טוב</span>
-                <span class="text-2xl font-black text-gray-600">השטיח המעופף</span>
-                <span class="text-2xl font-black text-gray-600">רשת 13</span>
-            </div>
-        </div>
-    </div>
-
     <!-- Contact Section -->
     <section id="contact" class="py-24 bg-gray-900 text-white relative overflow-hidden">
         <!-- Background Accents -->
@@ -403,13 +421,13 @@
                             </a>
 
                             <!-- Email Address -->
-                            <a href="mailto:studio@atomer.co.il" class="flex items-center gap-6 group">
+                            <a href="mailto:eithanasulin@gmail.com" class="flex items-center gap-6 group">
                                 <div class="w-14 h-14 bg-gray-700/50 rounded-2xl flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition duration-300">
                                     <i data-lucide="mail" class="w-7 h-7"></i>
                                 </div>
                                 <div>
                                     <p class="text-sm text-gray-400 mb-1">שלחו לי מייל</p>
-                                    <p class="text-xl font-bold">studio@atomer.co.il</p>
+                                    <p class="text-xl font-bold">eithanasulin@gmail.com</p>
                                 </div>
                             </a>
                         </div>
